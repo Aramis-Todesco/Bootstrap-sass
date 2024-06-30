@@ -1,0 +1,1 @@
+{"mappings":"AACA","sources":["style.scss"],"sourcesContent":["$myFavouriteColor: blue;\r\nbody > #h1 {\r\n    background-color: $myFavouriteColor;\r\n}"],"names":[],"version":3,"file":"index.8353e49f.css.map","sourceRoot":"/__parcel_source_root/"}

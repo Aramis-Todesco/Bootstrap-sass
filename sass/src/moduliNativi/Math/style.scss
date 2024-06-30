@@ -1,0 +1,19 @@
+//importiamo Math
+@use "sass:math";
+@use "sass:color";
+
+$random: rgb(
+    math.random(256)-1,
+    math.random(256)-1,
+    math.random(256)-1
+);
+body {
+    font-size: 1.4rem;
+    background-color: $random;
+    @if(color.lightness($random) < 40%) {
+        color: white;
+    } @else {
+        color: black;
+    }
+} 
+

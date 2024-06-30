@@ -1,0 +1,9 @@
+//i partials - indichiamo _nome.scss - il file non viene compilato in file CSS
+@import "variabili";
+@import "default";
+
+
+//lavorare con import non è molto efficiente e sicuro, meglio utilizzare i moduli @use
+//@use "variabili";
+//@use "default";
+//@import è deprecato

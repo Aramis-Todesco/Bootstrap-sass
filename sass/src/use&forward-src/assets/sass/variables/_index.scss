@@ -1,0 +1,6 @@
+//importiamo gli altri partials con forward
+@forward "default" as default-*;
+@forward "font" as font-*;
+@forward "custom" as custom-*;
+
+//per definire una stessa variabile in più file Sass collegati (es. in _custom.scss e _default.scss) cambiamo namespace in _index.scss così che come nome della variabile indichiamo anche il nuovo namespace (es. style.scss)

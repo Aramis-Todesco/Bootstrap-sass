@@ -1,0 +1,6 @@
+$bg: orange;
+
+@mixin _container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}

@@ -1,0 +1,12 @@
+/*
+@use "./variables/default";
+@use "./variables/font";
+@use "./variables/custom";
+*/
+//non è comodo indicare @use ogni volta per importare un partial, creiamo il partial _index.scss
+@use "variables"; // importiamo tutta la cartella
+
+body {
+    //background-color: variables.$default-bg;
+    background-color: variables.$custom-bg;
+}

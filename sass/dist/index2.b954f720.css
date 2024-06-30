@@ -1,0 +1,35 @@
+body {
+  background-color: orange;
+}
+
+h2 {
+  background-color: #add8e6;
+}
+
+@media (width >= 600px) {
+  p {
+    width: 80%;
+  }
+}
+
+#test {
+  color: #fff;
+  background-color: red;
+  display: grid;
+}
+
+@media (width >= 600px) {
+  #test {
+    color: #000;
+    background-color: #ff0;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  #test {
+    background-color: #f0f;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/*# sourceMappingURL=index2.b954f720.css.map */

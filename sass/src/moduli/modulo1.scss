@@ -1,0 +1,72 @@
+//sia il modulo x e il modulo y hanno al loro interno la variabile $bg
+@use "x";// namespace x
+@use "y";//namespace y
+
+body {
+    background-color: x.$bg; //namespace.variabile
+}
+h2 {
+    background-color: y.$bg;
+}
+//il namespace di default è il nome del file. Per cambiare il namespace di default con la keyword as
+/*
+@use "x" as "a";
+@use "y" as "b";
+body {
+    background-color: a.$bg;
+}
+h2 {
+    background-color: b.$bg;
+}
+*/
+//per rimuovere il namespace(meglio tenerlo) utilizziamo * - indicheremo quindi solo la variabile
+//@use "x" as *;
+
+//In Sass variabili, funzioni e mixin definite in un partial sono pubbliche
+//per rendere una variabile/funzione/mixin privata anteponiamo al nome - o _
+/*
+body {
+    @include x.container;
+}
+*/ //errore, il mixin non è importabile perché privato
+
+//In Sass possiamo definire una MediaQuery all'interno di una regola, in CSS non possiamo
+//index2.b954f720.css
+p {
+    @media(min-width: 600px) {
+        width: 80%;
+    }
+}
+
+@mixin medium-device {
+    @media (min-width: y.$medium-size-start) {
+        @content;
+    }
+}
+@mixin big-device {
+    @media (min-width: y.$big-size-start) {
+        @content;
+    }
+}
+//grazie a @content le dichiarazioni indicate in @include verranno aggiunte al mixin
+//il placeholder @content verrà sostituito con @include
+#test {
+    display: grid;
+    background-color: red;
+    color: white;
+
+    @include medium-device {
+        grid-template-columns: repeat(2, 1fr);
+        background-color: yellow;
+        color: black;
+    }
+
+    @include big-device {
+        grid-template-columns: repeat(3, 1fr);
+        background-color: magenta;
+    }
+} //index2.b954f720.css
+
+//con @import i file sono collegati != @use
+//quello che importiamo con @use rimane locale al file in cui effettuiamo l'importazione 
+//Per avere lo stesso comportamento con @use utilizziamo @forward nei partials che si collegano al partial iniziale. @use lo utilizziamo nel file principale Sass (non è una buona pratica)

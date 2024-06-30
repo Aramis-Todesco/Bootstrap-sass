@@ -1,0 +1,101 @@
+@use "sass:math";
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+
+//math
+$random: rgb(
+    math.random(256)-1,
+    math.random(256)-1,
+    math.random(256)-1
+);//index4.f10ab119.css
+
+body {
+    font-size: 1.4rem;
+    background-color: $random;
+    @if(color.lightness($random) < 40%) {
+        color: white;
+    } @else {
+        color: black;
+    }
+}
+
+//liste
+$l1: 1 2;
+$l2: list.append($l1, 3);
+@each $elemento in $l2 {
+    .regola-#{$elemento} {
+        grid-column: span $elemento;
+    }
+}//index4.f10ab119.css
+
+$l3: 11 12;
+$l4: 13 14;
+$l5: list.join($l3, $l4);
+@each $elemento in $l5 {
+    .regola-#{$elemento} {
+        grid-column: span $elemento;
+    }
+}//index4.f10ab119.css
+
+$l6: 5 6;
+$l7: 7 8;
+$l8: list.join($l6, $l7);
+@for $i from 1 through list.length($l8) {
+    .col-type-#{$i} {
+        grid-column: span list.nth($l8, $i);
+    }
+}//index4.f10ab119.css
+
+//map
+$themetype: (
+    "dark": (
+        "background-color": rgb(30, 30, 30),
+        "color": #fff
+    ),
+    "light": (
+        "background-color": #fff,
+        "color": rgb(30, 30, 30)
+    )
+);
+$themetype: map.deep-merge($themetype, (
+    "dark-3": (
+        "background-color": rgb(60, 60, 60),
+        "color": #fff
+    )
+));
+$default: "dark";
+
+div:nth-child(2) {
+    $theme: map.get($themetype, "dark");
+    $color: map.get($theme, "color");
+    $bg: map.get($theme, "background-color");
+    background-color: $bg;
+    color: $color;
+}
+div:nth-child(3) {
+    $theme: map.get($themetype, "light");
+    $color: map.get($theme, "color");
+    $bg: map.get($theme, "background-color");
+    background-color: $bg;
+    color: $color;
+}
+
+@function get-propery($prop, $custom-theme: null) {
+    @if $custom-theme and map.has-key($themetype, $custom-theme) {
+        $theme: map.get($themetype, $custom-theme);
+        $color: map.get($theme, $prop);
+        $bg: map.get($theme, $prop);
+        @return $bg;
+    } @else {
+        $theme: map.get($themetype, $default);
+        $color: map.get($theme, $prop);
+        $bg: map.get($theme, $prop);
+        @return $bg;
+    }
+}
+div:nth-child(4) {
+    background-color: get-propery("background-color", "dark");
+    //background-color: get-propery("background-color", "dark-2");
+    //background-color: get-propery("background-color", "dark-3");
+}
